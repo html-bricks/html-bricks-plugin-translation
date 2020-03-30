@@ -1,10 +1,10 @@
-# html-bricks-plugin-inline-css
+# html-bricks-plugin-translation
 
-Inline CSS for [html-bricks](https://github.com/html-bricks/html-bricks).
+Translation for [html-bricks](https://github.com/html-bricks/html-bricks).
 
-Essentially parses each HTML file's `<link rel="stylesheet" type="text/css">` tags and includes their content in a `<style>` tag instead. Order is preserved.
+The goal of this is to have zero-config translation that is simple enough that anyone can figure it out and at the same time flexible enough that you can use it for everything.
 
-The goal of this is to prevent FOUC, but the tradeoff of course is longer initial page load.
+> Disclaimer: Only translates inside HTML files.
 
 ## Requirements
 
@@ -14,18 +14,34 @@ The goal of this is to prevent FOUC, but the tradeoff of course is longer initia
 
 Install using npm
 
-`npm install --save-dev html-bricks-plugin-inline-css`
+`npm install --save-dev html-bricks-plugin-translation`
 
 Then include the plugin in your config
 
 ```json
 {
   "plugins": [
-    "plugin-inline-css"
+    "plugin-translation"
   ]
 }
 ```
 
 ## Usage
 
-Include your css stylesheets with a `<link rel="stylesheet" type="text/css">` (you need to specify both rel and type) like you would normally do. Then  grab a cup of ☕ and relax yourself as your stylesheets are converted into `<style>` tags.
+In your HTML files you can translate something as follows:
+
+```html
+<translate lang="en">Something in English</translate>
+<translate lang="es">Algo en español</translate>
+<translate>Noget på dansk</translate>
+```
+
+In this example this HTML file adds three languages: en (English), es (Spanish) and the default (Danish).
+
+Adding a language in any HTML files makes sure that *all HTML files* are compiled in *all languages*.
+
+Be aware that there are no fallbacks, when the correct translation does not exist. In fact, you can understand the `<translate>` tags as if-statements: Is lang property equal the language that we are currently compiling? If so, render it's children, if not, leave it out completely.
+
+## Todo
+
+Add a `<switch>` tag that can be used to render fallbacks when the correct language is not present.
