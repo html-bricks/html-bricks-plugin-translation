@@ -1,0 +1,30 @@
+{
+  "name": "html-bricks-plugin-translation",
+  "version": "0.0.3",
+  "description": "Dead simple translation for HTML-bricks",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gustavgb/html-bricks-plugin-translation.git"
+  },
+  "keywords": [
+    "translation",
+    "plugin",
+    "html-bricks",
+    "static",
+    "compiler",
+    "cool"
+  ],
+  "author": "Gustav Burchardt <gustavburchardt@gmail.com> (https://gustavgb.github.io)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gustavgb/html-bricks-plugin-translation/issues"
+  },
+  "homepage": "https://github.com/gustavgb/html-bricks-plugin-translation#readme",
+  "peerDependencies": {
+    "html-bricks": "0.x"
+  }
+}
