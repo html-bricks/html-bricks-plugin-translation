@@ -24,8 +24,11 @@ exports.postBuild = function postBuild (files, config) {
         return acc
       }, [])
 
-      const next = langs.reduce((acc, currentLang) => {
-        files.forEach(file => {
+      const htmlFiles = files.filter(file => file.dest.match(htmlReg))
+      const otherFiles = files.filter(file => !file.dest.match(htmlReg))
+
+      const next = langs.reduce((acc, currentLang, index) => {
+        htmlFiles.forEach(file => {
           if (file.dest.match(htmlReg)) {
             const dest = file.dest.replace(path.resolve(dirname, config.buildDir), function (match) {
               return path.join(match, currentLang)
@@ -43,13 +46,11 @@ exports.postBuild = function postBuild (files, config) {
               content: Buffer.from(markup),
               dest
             }))
-          } else {
-            acc.push(file)
           }
         })
 
         return acc
-      }, [])
+      }, otherFiles)
 
       if (langs.length === 0) {
         resolve(files)
